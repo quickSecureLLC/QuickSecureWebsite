@@ -25,12 +25,8 @@ import { useFadeUpOnScroll } from "./hooks/useFadeUpOnScroll";
 import { useParallax } from "./hooks/useParallax";
 import { useRevealFast } from "./hooks/useRevealFast";
 import { useCursorGradient } from "./hooks/useCursorGradient";
-import { DemoRequestModal } from "./DemoRequestModal";
-import { useState } from "react";
 
 export function AboutOverview() {
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-  
   // Global design standards: all dynamic elements
   useFadeUpOnScroll();
   useParallax();
@@ -219,16 +215,11 @@ export function AboutOverview() {
         {/* Spacer 96px */}
 
         {/* 5️⃣ CLOSING CTA */}
-        <ClosingCTA onDemoClick={() => setIsDemoModalOpen(true)} />
+        <ClosingCTA onDemoClick={() => { window.location.hash = '/contact'; }} />
 
         {/* QS Footer */}
         <Footer />
 
-        {/* Demo Request Modal */}
-        <DemoRequestModal 
-          isOpen={isDemoModalOpen} 
-          onClose={() => setIsDemoModalOpen(false)} 
-        />
       </div>
     </>
   );

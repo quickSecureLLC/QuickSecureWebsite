@@ -46,7 +46,7 @@ export function ProductsOverview() {
       description: "Central dashboard connecting alerts, drills, ticketing, and analytics for complete campus visibility.",
       icon: <Network style={{ width: '32px', height: '32px' }} />,
       category: "Platform",
-      route: "#/products/nexus"
+      route: "#/solutions"
     },
     {
       id: "panic-app",
@@ -55,7 +55,7 @@ export function ProductsOverview() {
       description: "Instantly alerts responders with GPS location and live communication from any device.",
       icon: <Smartphone style={{ width: '32px', height: '32px' }} />,
       category: "Emergency",
-      route: "#/products/panic-app"
+      route: "#/solutions"
     },
     {
       id: "gunshot-detection",
@@ -64,7 +64,7 @@ export function ProductsOverview() {
       description: "Detects and verifies gunfire automatically, notifying staff and law enforcement in seconds.",
       icon: <Mic style={{ width: '32px', height: '32px' }} />,
       category: "Emergency",
-      route: "#/products/gunshot-detection"
+      route: "#/solutions"
     },
     {
       id: "ticketing",
@@ -73,7 +73,7 @@ export function ProductsOverview() {
       description: "Automates issue reporting across IT, facilities, and security with real-time updates.",
       icon: <Ticket style={{ width: '32px', height: '32px' }} />,
       category: "Operations",
-      route: "#/products/ticketing"
+      route: "#/solutions"
     },
     {
       id: "drill-management",
@@ -82,7 +82,7 @@ export function ProductsOverview() {
       description: "Plans, executes, and records drills with AI-driven insights and compliance tracking.",
       icon: <Shield style={{ width: '32px', height: '32px' }} />,
       category: "Compliance",
-      route: "#/products/drill-management"
+      route: "#/solutions"
     },
     {
       id: "visitor-management",
@@ -91,7 +91,7 @@ export function ProductsOverview() {
       description: "Scans IDs, issues badges, and logs visitor activity for secure, traceable access.",
       icon: <UserCheck style={{ width: '32px', height: '32px' }} />,
       category: "Access Control",
-      route: "#/products/visitor-management"
+      route: "#/solutions"
     },
     {
       id: "mass-notifications",
@@ -100,7 +100,7 @@ export function ProductsOverview() {
       description: "Sends alerts and personalized safety instructions via SMS, email, voice, and app.",
       icon: <Radio style={{ width: '32px', height: '32px' }} />,
       category: "Emergency",
-      route: "#/products/mass-notifications"
+      route: "#/solutions"
     },
     {
       id: "electronic-lock",
@@ -109,7 +109,7 @@ export function ProductsOverview() {
       description: "Locks down buildings instantly through centralized or manual commands with live status feedback.",
       icon: <Lock style={{ width: '32px', height: '32px' }} />,
       category: "Access Control",
-      route: "#/products/electronic-lock"
+      route: "#/solutions"
     },
     {
       id: "tip-line",
@@ -118,7 +118,7 @@ export function ProductsOverview() {
       description: "Securely collects and categorizes reports from students and staff to identify real threats faster. Filters and prioritizes tips while protecting identity.",
       icon: <PhoneCall style={{ width: '32px', height: '32px' }} />,
       category: "Safety",
-      route: "#/products/tip-line"
+      route: "#/solutions"
     }
   ];
 

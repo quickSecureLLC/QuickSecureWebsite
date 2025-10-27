@@ -181,6 +181,12 @@ function FeatureSection({ productName, imageUrl, features }: {
   
   // Special styling for Rapid Lockdown System (rounded corners, grey background, drop shadow)
   const isRapidLockdownSystem = productName === 'Rapid Lockdown System';
+  
+  // Special styling for Mass Notifications (rounded corners, drop shadow)
+  const isMassNotifications = productName === 'Mass Notifications';
+  
+  // Special styling for AI Gunshot Detection (rounded corners, drop shadow)
+  const isAIGunshotDetection = productName === 'AI Gunshot Detection';
 
   return (
     <section className="fade-up-on-scroll delay-100" style={{
@@ -203,7 +209,7 @@ function FeatureSection({ productName, imageUrl, features }: {
               borderRadius: '12px',
               overflow: 'hidden',
               backgroundColor: isRapidLockdownSystem ? '#F5F5F5' : 'transparent',
-              boxShadow: isPanicButtonApp ? 'none' : isRapidLockdownSystem ? '0 8px 24px rgba(0, 0, 0, 0.12)' : '0 8px 24px rgba(0, 0, 0, 0.12)'
+              boxShadow: isPanicButtonApp ? 'none' : (isRapidLockdownSystem || isMassNotifications || isAIGunshotDetection) ? '0 8px 24px rgba(0, 0, 0, 0.12)' : '0 8px 24px rgba(0, 0, 0, 0.12)'
             }}
           >
             <img
@@ -317,7 +323,7 @@ function StorySection({ productName, headline, text, imageUrl, inverted = false 
         overflow: 'hidden',
         backgroundColor: '#F7F9FA',
         borderRadius: '12px',
-        boxShadow: productName === 'Panic Button App' ? '0 8px 24px rgba(0, 0, 0, 0.12)' : 'none'
+        boxShadow: 'none'
       }}
     >
       <img
@@ -571,11 +577,11 @@ export function AIPoweredInsightsPage({ onBack }: { onBack: () => void }) {
 
 export function VisitorManagementPage({ onBack }: { onBack: () => void }) {
   return (
-    <div style={{ height: '100%', width: '100%', overflowY: 'auto', backgroundColor: '#F7F9FA', paddingTop: 0 }}>
+    <div style={{ minHeight: '100vh', width: '100%', overflowY: 'auto', backgroundColor: '#F7F9FA', paddingTop: 0 }}>
       {/* Hero Section - Coming Soon */}
       <section style={{
-        minHeight: 'calc(100vh - 380px)',
-        padding: '120px 80px 0',
+        minHeight: 'calc(100vh - 64px)',
+        padding: '120px 80px 96px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -751,6 +757,8 @@ export function AIGunshotDetectionPage({ onBack }: { onBack: () => void }) {
       storyHeadline="Faster Than Human Response"
       storyText="In an active shooter situation, every second matters. Our AI detection system alerts law enforcement before anyone can reach for a phone, providing exact location data to speed response times."
       invertStory={true}
+      featureImageUrl="/media/QuickSecure-AIGunshotDetection-1.png"
+      storyImageUrl="/media/QuickSecure-AIGunshotDetection-2.png"
     />
   );
 }
@@ -783,6 +791,8 @@ export function MassNotificationsPage({ onBack }: { onBack: () => void }) {
       storyHeadline="Critical Information, Instantly"
       storyText="Whether it's a weather emergency, security threat, or school closure, reach your entire community in seconds. Message templates and contact groups ensure rapid deployment during critical situations."
       invertStory={false}
+      featureImageUrl="/media/QuickSecure-MassNotifications-1.png"
+      storyImageUrl="/media/QuickSecure-MassNotifications-2.png"
     />
   );
 }

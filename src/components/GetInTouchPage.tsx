@@ -91,36 +91,13 @@ export function GetInTouchPage({
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    try {
-      // Simulate API call to backend service
-      // In production, this would be a real API endpoint
-      const response = await fetch('/api/contact-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          timestamp: new Date().toISOString(),
-          source: 'contact-page'
-        })
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', institution: '', message: '' });
-      } else {
-        throw new Error('Submission failed');
-      }
-    } catch (error) {
-      // Fallback: For now, simulate success since we don't have a backend
-      // In production, this would handle the actual error
-      console.log('Contact form submitted:', formData);
+    // Simulate form submission delay
+    setTimeout(() => {
+      console.log('Form submitted:', formData);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', institution: '', message: '' });
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   return (
@@ -184,7 +161,10 @@ export function GetInTouchPage({
                 Ready to make your district safer? Our team is here to help you get started.
               </p>
 
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <form 
+                onSubmit={handleSubmit} 
+                style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+              >
                 {/* Full Name Field */}
                 <div>
                   <label 
@@ -201,6 +181,7 @@ export function GetInTouchPage({
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -234,6 +215,7 @@ export function GetInTouchPage({
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -267,6 +249,7 @@ export function GetInTouchPage({
                   </label>
                   <input
                     type="text"
+                    name="institution"
                     required
                     value={formData.institution}
                     onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
@@ -299,6 +282,7 @@ export function GetInTouchPage({
                     Message
                   </label>
                   <textarea
+                    name="message"
                     className="contact-form-field"
                     rows={3}
                     value={formData.message}
@@ -357,7 +341,7 @@ export function GetInTouchPage({
                     margin: 0,
                     textAlign: 'center'
                   }}>
-                    Thank you! Your demo request has been received. Our team will contact you within 24 hours.
+                    Thank you for your interest. We will be in contact soon.
                   </p>
                 )}
                 {submitStatus === 'error' && (

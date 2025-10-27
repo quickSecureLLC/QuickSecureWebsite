@@ -1502,21 +1502,10 @@ export function SolutionsTemplate() {
                 fontSize: '16px',
                 lineHeight: 1.6,
                 color: '#4A4A4A',
-                marginBottom: '24px'
+                marginBottom: '0'
               }}>
                 Unified dashboard with district-wide visibility, compliance tracking, and strategic insights for decision-making.
               </p>
-              <div style={{
-                display: 'inline-block',
-                fontSize: '14px',
-                fontWeight: 600,
-                color: 'var(--qs-brand-accent)',
-                textDecoration: 'none',
-                borderBottom: '2px solid var(--qs-brand-accent)',
-                paddingBottom: '2px'
-              }}>
-                Learn More →
-              </div>
             </div>
 
             {/* Building Principals */}
@@ -1558,21 +1547,10 @@ export function SolutionsTemplate() {
                 fontSize: '16px',
                 lineHeight: 1.6,
                 color: '#4A4A4A',
-                marginBottom: '24px'
+                marginBottom: '0'
               }}>
                 Streamlined drill scheduling, incident management, and communication tools for efficient campus operations.
               </p>
-              <div style={{
-                display: 'inline-block',
-                fontSize: '14px',
-                fontWeight: 600,
-                color: 'var(--qs-brand-accent)',
-                textDecoration: 'none',
-                borderBottom: '2px solid var(--qs-brand-accent)',
-                paddingBottom: '2px'
-              }}>
-                Learn More →
-              </div>
             </div>
 
             {/* Safety Staff */}
@@ -1614,21 +1592,10 @@ export function SolutionsTemplate() {
                 fontSize: '16px',
                 lineHeight: 1.6,
                 color: '#4A4A4A',
-                marginBottom: '24px'
+                marginBottom: '0'
               }}>
                 Rapid incident response, real-time coordination, and detailed documentation for comprehensive safety coverage.
               </p>
-              <div style={{
-                display: 'inline-block',
-                fontSize: '14px',
-                fontWeight: 600,
-                color: 'var(--qs-brand-accent)',
-                textDecoration: 'none',
-                borderBottom: '2px solid var(--qs-brand-accent)',
-                paddingBottom: '2px'
-              }}>
-                Learn More →
-              </div>
             </div>
           </div>
         </div>
