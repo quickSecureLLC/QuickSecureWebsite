@@ -29,6 +29,7 @@ import {
   MassNotificationsIcon,
   AnonymousTipLineIcon
 } from "../../icons";
+import { DemoRequestModal } from "../DemoRequestModal";
 
 interface HeaderProps {
   onNavigateToProduct?: (productId: string) => void;
@@ -408,6 +409,7 @@ export function Header({ onNavigateToProduct, onContactClick, className = "" }: 
   const [hoveredResource, setHoveredResource] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState<string>('');
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   
   const openTimerRef = useRef<NodeJS.Timeout | null>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -918,13 +920,7 @@ export function Header({ onNavigateToProduct, onContactClick, className = "" }: 
               Dashboard Login
             </a>
             <button
-              onClick={() => {
-                if (onContactClick) {
-                  onContactClick();
-                } else {
-                  window.location.hash = '/contact';
-                }
-              }}
+              onClick={() => setIsDemoModalOpen(true)}
               className="no-underline-hover"
               style={{
                 fontFamily: 'var(--qs-type-family-body)',
@@ -1005,6 +1001,12 @@ export function Header({ onNavigateToProduct, onContactClick, className = "" }: 
           </div>
         )}
       </nav>
+
+      {/* Demo Request Modal */}
+      <DemoRequestModal 
+        isOpen={isDemoModalOpen} 
+        onClose={() => setIsDemoModalOpen(false)} 
+      />
     </>
   );
 }

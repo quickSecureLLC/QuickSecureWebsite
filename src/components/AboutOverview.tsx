@@ -25,8 +25,12 @@ import { useFadeUpOnScroll } from "./hooks/useFadeUpOnScroll";
 import { useParallax } from "./hooks/useParallax";
 import { useRevealFast } from "./hooks/useRevealFast";
 import { useCursorGradient } from "./hooks/useCursorGradient";
+import { DemoRequestModal } from "./DemoRequestModal";
+import { useState } from "react";
 
 export function AboutOverview() {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  
   // Global design standards: all dynamic elements
   useFadeUpOnScroll();
   useParallax();
@@ -215,10 +219,16 @@ export function AboutOverview() {
         {/* Spacer 96px */}
 
         {/* 5️⃣ CLOSING CTA */}
-        <ClosingCTA />
+        <ClosingCTA onDemoClick={() => setIsDemoModalOpen(true)} />
 
         {/* QS Footer */}
         <Footer />
+
+        {/* Demo Request Modal */}
+        <DemoRequestModal 
+          isOpen={isDemoModalOpen} 
+          onClose={() => setIsDemoModalOpen(false)} 
+        />
       </div>
     </>
   );
@@ -413,7 +423,7 @@ function ValuesSection() {
 }
 
 // 5️⃣ Closing CTA Component
-function ClosingCTA() {
+function ClosingCTA({ onDemoClick }: { onDemoClick: () => void }) {
   const primaryBtnRef = useCursorGradient();
   const secondaryBtnRef = useCursorGradient();
 
@@ -447,7 +457,7 @@ function ClosingCTA() {
           <button
             ref={primaryBtnRef as any}
             className="hover-lift cta-gradient-hover"
-            onClick={() => { window.location.hash = '/contact'; }}
+            onClick={onDemoClick}
             style={{
               backgroundColor: 'var(--qs-brand-accent)',
               color: 'var(--qs-brand-accent-fg)',

@@ -178,6 +178,9 @@ function FeatureSection({ productName, imageUrl, features }: {
   
   // Special styling for AI Tip Line (drop shadow and rounded corners)
   const isAITipLine = productName === 'AI Tip Line';
+  
+  // Special styling for Rapid Lockdown System (rounded corners, grey background, drop shadow)
+  const isRapidLockdownSystem = productName === 'Rapid Lockdown System';
 
   return (
     <section className="fade-up-on-scroll delay-100" style={{
@@ -199,7 +202,8 @@ function FeatureSection({ productName, imageUrl, features }: {
               aspectRatio: '16 / 10',
               borderRadius: '12px',
               overflow: 'hidden',
-              boxShadow: isPanicButtonApp ? 'none' : '0 8px 24px rgba(0, 0, 0, 0.12)'
+              backgroundColor: isRapidLockdownSystem ? '#F5F5F5' : 'transparent',
+              boxShadow: isPanicButtonApp ? 'none' : isRapidLockdownSystem ? '0 8px 24px rgba(0, 0, 0, 0.12)' : '0 8px 24px rgba(0, 0, 0, 0.12)'
             }}
           >
             <img
@@ -843,6 +847,8 @@ export function ElectronicLockPage({ onBack }: { onBack: () => void }) {
       storyHeadline="Protect Every Entry Point"
       storyText="Monitor the status of every lock across campus from one central dashboard. Ensure full readiness with live door feedback, system health checks, and instant control when response time matters most."
       invertStory={false}
+      featureImageUrl="/media/QuickSecure-RapidLockdownSystem-1.png"
+      storyImageUrl="/media/QuickSecure-RapidLockdownSystem-2.png"
     />
   );
 }
