@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+// import AnnouncementBanner from "@/components/layout/AnnouncementBanner";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        {/* <AnnouncementBanner /> */}
         <Header />
         <main>{children}</main>
         <Footer />

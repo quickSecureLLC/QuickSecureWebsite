@@ -22,7 +22,6 @@ export default function LottieCard({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const dotLottieRef = useRef<DotLottie | null>(null);
 
   // Track when card enters/leaves viewport
@@ -34,9 +33,9 @@ export default function LottieCard({
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasBeenVisible(true);
-          setIsVisible(true);
+          dotLottieRef.current?.play();
         } else {
-          setIsVisible(false);
+          dotLottieRef.current?.pause();
         }
       },
       { rootMargin: "200px" }
@@ -46,17 +45,6 @@ export default function LottieCard({
     return () => observer.disconnect();
   }, []);
 
-  // Play/pause based on visibility
-  useEffect(() => {
-    const instance = dotLottieRef.current;
-    if (!instance) return;
-    if (isVisible) {
-      instance.play();
-    } else {
-      instance.pause();
-    }
-  }, [isVisible]);
-
   const dotLottieRefCallback = useCallback((instance: DotLottie | null) => {
     dotLottieRef.current = instance;
   }, []);
@@ -65,7 +53,7 @@ export default function LottieCard({
     <div
       ref={containerRef}
       className={cn(
-        "flex flex-col overflow-hidden rounded-[8px] border-[0.5px] border-[#1A1F2E] bg-[#2D3748]",
+        "flex flex-col overflow-hidden rounded-lg border border-surface bg-lottie-bg",
         className
       )}
     >
@@ -84,8 +72,8 @@ export default function LottieCard({
         {hasBeenVisible ? (
           <DotLottieReact
             src={lottie}
-            autoplay
             loop
+            autoplay
             className="size-full"
             dotLottieRefCallback={dotLottieRefCallback}
           />

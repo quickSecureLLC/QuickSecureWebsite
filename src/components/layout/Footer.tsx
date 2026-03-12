@@ -8,13 +8,6 @@ const columns = [
     ],
   },
   {
-    title: "Company",
-    links: [
-      { label: "Careers", href: "/careers" },
-      { label: "Blog", href: "/blog" },
-    ],
-  },
-  {
     title: "Legal",
     links: [
       { label: "Terms of Service", href: "/legal#terms-of-service" },
@@ -25,7 +18,6 @@ const columns = [
   {
     title: "Support",
     links: [
-      { label: "Our Story", href: "/our-story" },
       { label: "Request Demo", href: "/contact" },
       {
         label: "Trust Center",
@@ -57,7 +49,7 @@ function FooterColumn({
   return (
     <div className="min-w-[100px]">
       <h3 className="mb-5 text-[14px] leading-[14px] text-white/60">{title}</h3>
-      <ul className="flex flex-col gap-[8px]">
+      <ul className="flex flex-col gap-2">
         {links.map((link) => (
           <li key={link.label}>
             <a
@@ -78,11 +70,11 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer className="bg-[#070B16] text-white">
-      <div className="px-8 pt-[58px] pb-[45px] sm:px-16 sm:pt-[72px] md:px-[120px]">
-        <div className="flex flex-col items-start gap-[79.5px]">
+    <footer className="bg-navy text-white">
+      <div className="px-8 pt-14 pb-11 sm:px-16 sm:pt-18 md:px-30">
+        <div className="flex flex-col items-start gap-20">
           {/* Link columns */}
-          <div className="flex w-full flex-wrap gap-y-[40px] justify-between">
+          <div className="flex w-full flex-wrap gap-y-10 justify-between">
             {columns.map((column) => (
               <FooterColumn
                 key={column.title}
@@ -93,11 +85,11 @@ export default function Footer() {
           </div>
 
           {/* Footer bottom */}
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-[16px]">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-4">
             <span className="text-[14px] leading-[21px] text-white">
               &copy; 2026 QuickSecure
             </span>
-            <div className="flex items-center gap-[6px] text-[14px] leading-[21px] text-white">
+            <div className="flex items-center gap-1.5 text-[14px] leading-[21px] text-white">
               <svg
                 width="14"
                 height="14"

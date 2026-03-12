@@ -69,74 +69,67 @@ Map Figma hex values to the project's design tokens defined in `src/app/globals.
 
 | Figma Hex | Token | Tailwind Class |
 |-----------|-------|---------------|
-| #CC0A14 | `primary-red` | `text-primary-red`, `bg-primary-red` |
-| #124289 | `dark-navy` | `text-dark-navy`, `bg-dark-navy` |
-| #2A5A9E | `accent-blue` | `text-accent-blue`, `bg-accent-blue` |
-| #6A7282 | `pale-sky` | `text-pale-sky`, `bg-pale-sky` |
-| #D3CDEE | `light-purple` | `border-light-purple`, `bg-light-purple` |
-| #F3F4F7 | `light-gray` | `bg-light-gray` |
-| #F9FAFB | `page-bg` | `bg-page-bg` |
-| #F9F7F6 | `hint-red` | `text-hint-red`, `bg-hint-red` |
-| #F7E9EF | `amour` | `bg-amour` |
-| #0E0C0C | `dark` | `text-dark`, `bg-dark` |
+| #070B16 | `primary-red` / `dark` / `black` | `text-primary-red`, `bg-dark`, `text-black` |
+| #10182E | `dark-navy` | `text-dark-navy`, `bg-dark-navy` |
+| #2E75D4 | `accent-blue` | `text-accent-blue`, `bg-accent-blue` |
+| #D7D128 | `brand-yellow` | `text-brand-yellow`, `bg-brand-yellow` |
+| #6C757D | `pale-sky` | `text-pale-sky`, `bg-pale-sky` |
+| #F1F3F5 | `light-gray` | `bg-light-gray`, `text-light-gray` |
+| #1A1F2E | `page-bg` | `bg-page-bg` |
+| #FDFDE5 | `amour` | `bg-amour`, `text-amour` |
+| #FFFFFF | `white` | `text-white`, `bg-white` |
 
-For opacity variants, use Tailwind's `/` syntax: `text-dark/50`, `text-dark/70`, `bg-primary-red/[0.08]`.
+For opacity variants, use Tailwind's `/` syntax: `text-white/50`, `text-white/70`, `border-white/10`.
 
 ### Reusable Components — Use Instead of Regenerating
 
 Before creating new elements, check if an existing component covers the need:
 
 #### `Button` (`src/components/ui/Button.tsx`)
-- Variants: `"primary"` (dark bg, hint-red text) | `"outline"` (border, transparent bg)
-- Sizes: `"sm"` | `"md"` | `"lg"`
+- Variants: `"primary"` (yellow bg `#D7D128`, navy text `#070B16`) | `"outline"` (border-white/20, transparent bg, white text)
+- Sizes: `"sm"` | `"md"`
 - Polymorphic: renders as `<a>` when `href` provided, `<button>` otherwise
 - Style: `rounded-full`, `hover:opacity-60`
 - Usage: `<Button href="/contact" size="md">Request demo</Button>`
 
-#### `Badge` (`src/components/ui/Badge.tsx`)
-- Severity: `"critical"` | `"high"` | `"medium"` | `"low"`
-- Each severity maps to a color token (red, navy, blue, gray) at 8% opacity bg
-- Includes colored dot indicator + capitalized label
-- Usage: `<Badge severity="critical" />`
-
 #### `CTALink` (`src/components/ui/CTALink.tsx`)
-- Variants: `"light"` (white) | `"dark"` | `"muted"` (dark/50)
-- Sizes: `"sm"` | `"md"` | `"lg"`
+- Variants: `"light"` (white) | `"dark"` | `"muted"` (blue)
+- Sizes: `"sm"` | `"md"`
 - Appends arrow (`→`) automatically
 - Usage: `<CTALink href="/learn" variant="light" size="md">Learn more</CTALink>`
 
 #### `Container` (`src/components/ui/Container.tsx`)
-- Max width: 1440px, centered, responsive padding: `px-5` → `sm:px-10` → `lg:px-[120px]`
+- Full-width, no max-width, responsive padding: `px-5 sm:px-12 md:px-30`
 - Wrap ALL page sections in this for consistent layout
 - Usage: `<Container><section>...</section></Container>`
 
-#### `ConwayLogo` (`src/components/ui/ConwayLogo.tsx`)
-- Variants: `"wordmark"` | `"icon"` (horizontal dot grid) | `"icon-square"`
-- Colors: `"dark"` | `"light"` | `"red"`
-- Usage: `<ConwayLogo variant="icon" color="dark" />`
+#### `QuickSecureLogo` (`src/components/ui/QuickSecureLogo.tsx`)
+- Colors: `"dark"` (#070B16 navy) | `"light"` (white, for dark backgrounds)
+- Horizontal SVG logo with shield icon + wordmark
+- Usage: `<QuickSecureLogo color="light" />`
 
 ### Typography Rules
 
-Use explicit pixel values for all text sizing — **never Tailwind presets** like `text-xl` or `text-2xl`:
+Use explicit pixel values for all text sizing — **never Tailwind presets** like `text-xl` or `text-2xl`. Default text color is `text-white` (dark theme). All headings use `leading-[0.9]` and `font-weight: 400`.
 
-- **H1**: `text-[28px] sm:text-[32px] lg:text-[36px] leading-[1.1] tracking-[-0.72px]`
-- **H2**: `text-[22px] sm:text-[24px] lg:text-[27px] leading-[24.3px] tracking-[-0.54px]`
-- **H3/Card titles**: `text-[16px] leading-[24px] tracking-[0.16px]`
-- **Body**: `text-[15px] lg:text-[16px] leading-[24px]`
-- **Subtitles**: Same size as heading but `text-dark/50`
-- **Nav links**: `text-[14px] leading-[16.8px]`
+- **H1**: `text-[28px] sm:text-[32px] lg:text-[36px] leading-[0.9] tracking-[-0.72px] text-white`
+- **H2**: `text-[22px] sm:text-[24px] lg:text-[27px] leading-[0.9] tracking-[-0.54px] text-white`
+- **H3/Card titles**: `text-[16px] leading-[24px] tracking-[0.16px] text-white`
+- **Body**: `text-[15px] lg:text-[16px] leading-[24px] text-white/70`
+- **Subtitles**: Same size as heading but `text-white/50`
+- **Nav links**: `text-[14px] leading-[16.8px] text-white`
 
 ### Card Patterns
 
-All cards follow this convention:
+All cards follow this dark-theme convention:
 ```
-rounded-[8px] border border-light-purple bg-light-gray overflow-hidden
+rounded-[8px] border border-white/10 bg-white/5 overflow-hidden
 ```
 
 Card images use:
 ```
 <div className="relative aspect-[4/3]">
-  <Image src={...} alt={...} fill className="object-cover" />
+  <Image src={...} alt={...} fill className="object-cover" sizes="..." />
 </div>
 ```
 
@@ -144,26 +137,24 @@ Card images use:
 
 - **Imports**: Use path aliases — `@/components/...`, `@/lib/...`, `@/types/...`
 - **Class merging**: Use `cn()` from `@/lib/utils` for all conditional/merged class names
-- **Types**: Shared types go in `src/types/index.ts`, component-local types stay inline
+- **Types**: Component-local types stay inline
 - **Client vs Server**: Only add `"use client"` when component uses hooks or browser APIs. Section components are server components by default.
 - **Data arrays**: Define nav links, feature lists, steps as `const` outside the component function
 - **Images**: Always use `next/image` with proper `alt`, `width`/`height` or `fill` props
 - **Hover states**: Use `hover:opacity-60` for buttons/links, not color changes
-- **Borders**: Use `border-light-purple` as the standard border color
+- **Borders**: Use `border border-white/10` as the standard border style
 
 ### File Placement
 
 - New reusable primitives → `src/components/ui/`
 - New page sections → `src/components/sections/`
 - New layout components → `src/components/layout/`
-- Shared types → `src/types/index.ts`
-
 ### Responsive Design
 
 - Mobile-first using breakpoints: `sm:` (768px), `md:` (1024px), `lg:` (1440px)
 - Flex layouts switch: `flex-col lg:flex-row`
 - Grid columns scale: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
-- Page max-width: 1440px (via `Container`)
+- Page is full-width (no max-width), layout controlled via `Container` padding
 
 ### Accessibility
 

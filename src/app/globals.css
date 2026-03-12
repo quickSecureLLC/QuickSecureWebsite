@@ -19,17 +19,13 @@
 
 @theme inline {
   /* Colors — QuickSecure brand */
-  --color-primary-red: #070B16;
-  --color-dark-navy: #10182E;
-  --color-accent-blue: #2E75D4;
-  --color-brand-yellow: #D7D128;
-  --color-pale-sky: #6C757D;
-  --color-light-gray: #F1F3F5;
-  --color-page-bg: #1A1F2E;
-  --color-amour: #FDFDE5;
-  --color-dark: #070B16;
-  --color-black: #070B16;
+  --color-navy: #070B16;
+  --color-yellow: #D7D128;
+  --color-blue: #2E75D4;
+  --color-surface: #1A1F2E;
+  --color-surface-raised: #10182E;
   --color-white: #FFFFFF;
+  --color-lottie-bg: #2D3748;  /* Lottie card fill */
 
   /* Fonts */
   --font-primary: "Satoshi", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
@@ -42,6 +38,10 @@
   --breakpoint-xl: 120rem;
 }
 
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
 @layer base {
   * {
     scrollbar-width: none;
@@ -51,9 +51,19 @@
   }
 
   body {
-    background: var(--color-page-bg);
-    color: #FFFFFF;
+    --banner-h: 0px;
+    --top-offset: calc(60px + var(--banner-h));
+    background: var(--color-surface);
+    color: var(--color-white);
     font-family: var(--font-primary);
+  }
+  body[data-banner="dismissed"] {
+    --banner-h: 0px;
+  }
+  body[data-banner="dismissed"] [data-announcement-banner] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -61,7 +71,12 @@
   }
 
   ::selection {
-    background: #D7D128;
-    color: #070B16;
+    background: var(--color-yellow);
+    color: var(--color-navy);
+  }
+
+  [data-marquee] {
+    animation: marquee var(--marquee-duration, 45s) linear infinite;
+    will-change: transform;
   }
 }

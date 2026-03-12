@@ -15,7 +15,7 @@ export default function QuickSecureLogo({
   className,
 }: LogoProps) {
   const colors = {
-    dark: "text-[#070B16]",
+    dark: "text-navy",
     light: "text-white",
   };
 

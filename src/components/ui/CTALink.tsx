@@ -4,7 +4,7 @@ type CTALinkProps = {
   children: React.ReactNode;
   href: string;
   variant?: "light" | "dark" | "muted";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md";
   className?: string;
 };
 
@@ -17,14 +17,13 @@ export default function CTALink({
 }: CTALinkProps) {
   const variants = {
     light: "text-white hover:opacity-70",
-    dark: "text-white hover:opacity-65",
-    muted: "text-[#2E75D4] hover:opacity-65",
+    dark: "text-white hover:opacity-60",
+    muted: "text-blue hover:opacity-60",
   };
 
   const sizes = {
     sm: "text-[13px] leading-[19.5px] gap-1",
     md: "text-[15px] leading-[22.5px] gap-1",
-    lg: "text-[18px] leading-[22.5px] gap-2",
   };
 
   return (

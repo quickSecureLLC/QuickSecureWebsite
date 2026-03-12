@@ -1,5 +1,12 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Container from "@/components/ui/Container";
-import LottieCard from "@/components/ui/LottieCard";
+
+const LottieCard = dynamic(() => import("@/components/ui/LottieCard"), {
+  ssr: false,
+  loading: () => <div className="rounded-lg bg-lottie-bg" />,
+});
 
 const topFeatures = [
   {
@@ -36,11 +43,11 @@ export default function ProductShowcase() {
   return (
     <section
       id="features"
-      className="bg-page-bg py-[78px] sm:py-[94px] md:py-[110px]"
+      className="bg-surface py-20 sm:py-24 md:py-28"
     >
       <Container>
         {/* Section header */}
-        <div className="mb-8 flex flex-col gap-[6px] sm:mb-10 md:mb-12">
+        <div className="mb-8 flex flex-col gap-1.5 sm:mb-10 md:mb-12">
           <h2 className="text-[22px] leading-[0.9] tracking-[-0.54px] text-white sm:text-[24px] md:text-[27px]">
             Every module your school needs
           </h2>
@@ -50,7 +57,7 @@ export default function ProductShowcase() {
         </div>
 
         {/* Top row: 2 cards with 41/59 split */}
-        <div className="mb-4 grid grid-cols-1 gap-4 sm:gap-[15px] md:mb-[15px] md:grid-cols-[41fr_59fr]">
+        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-[41fr_59fr]">
           <LottieCard
             {...topFeatures[0]}
             animationAspect="522/334"
@@ -62,7 +69,7 @@ export default function ProductShowcase() {
         </div>
 
         {/* Bottom row: 3 smaller cards */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-[15px] md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {bottomFeatures.map((feature, i) => (
             <LottieCard
               key={feature.title}

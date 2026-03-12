@@ -6,30 +6,33 @@ import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { label: "Products", href: "/#products" },
   { label: "Solutions", href: "/#use-cases" },
-  { label: "Our Story", href: "/our-story" },
-  { label: "Careers", href: "/careers" },
-  { label: "Blog", href: "/blog" },
+  { label: "Modules", href: "/#features" },
+  { label: "Security", href: "/#security" },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-page-bg">
-      <div className="relative flex h-[60px] items-center px-5 sm:px-12 md:px-[120px]">
+    <header
+      className="fixed left-0 right-0 z-50 bg-surface transition-[top] duration-300"
+      style={{ top: "var(--banner-h)" }}
+    >
+      <div className="relative flex h-[60px] items-center px-5 sm:px-12 md:px-30">
         {/* Logo */}
         <a href="/" className="shrink-0">
           <QuickSecureLogo color="light" className="h-[28px] w-auto" />
         </a>
 
         {/* Desktop Nav - absolutely centered */}
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-[15px] md:flex" aria-label="Main navigation">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 md:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="inline-flex items-center gap-1 rounded-full px-[12px] py-[6px] text-[14px] leading-[16.8px] text-white transition-opacity hover:opacity-60"
+              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[14px] leading-[16.8px] text-white transition-opacity hover:opacity-60"
             >
               {link.label}
             </a>

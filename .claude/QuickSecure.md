@@ -105,7 +105,7 @@ React Native + Expo (managed), TypeScript, React Navigation, Axios. Expo modules
 - Role-based access enforced via auth and account permissions
 - Student privacy controls for tip line and SIS-linked data
 - Audit logs supported
-- SOC 2 in progress
+
 - Terms of Service, Privacy Policy, Data Processing Agreement completed
 - General liability insurance in place
 

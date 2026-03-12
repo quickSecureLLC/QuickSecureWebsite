@@ -1,13 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Emergency Response - QuickSecure",
   description: "Structured workflows and direct-to-dispatch for any emergency.",
+  openGraph: {
+    title: "Emergency Response - QuickSecure",
+    description: "Structured workflows and direct-to-dispatch for any emergency.",
+    siteName: "QuickSecure",
+  },
 };
 
 export default function EmergencyResponsePage() {
   return (
-    <section className="flex min-h-[calc(100dvh-60px)] flex-col items-center justify-center px-5 pt-[60px] text-center">
+    <section className="flex flex-col items-center justify-center px-5 text-center" style={{ minHeight: "calc(100dvh - var(--top-offset))", paddingTop: "var(--top-offset)" }}>
       <h1 className="mb-4 text-[32px] leading-[0.9] tracking-[-0.72px] text-white">
         Emergency Response
       </h1>
@@ -16,7 +22,7 @@ export default function EmergencyResponsePage() {
       </p>
       <Link
         href="/"
-        className="text-[14px] text-accent-blue underline underline-offset-2 hover:opacity-70"
+        className="text-[14px] text-blue underline underline-offset-2 hover:opacity-70"
       >
         Back to home
       </Link>
