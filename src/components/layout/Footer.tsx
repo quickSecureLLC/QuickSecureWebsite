@@ -1,10 +1,11 @@
 const columns = [
   {
-    title: "Product",
+    title: "Platform",
     links: [
-      { label: "Home", href: "/" },
-      { label: "Modules", href: "/#features" },
+      { label: "Products", href: "/#products" },
       { label: "Solutions", href: "/#use-cases" },
+      { label: "Modules", href: "/#features" },
+      { label: "Security", href: "/#security" },
     ],
   },
   {
@@ -18,23 +19,8 @@ const columns = [
   {
     title: "Support",
     links: [
+      { label: "Home", href: "/" },
       { label: "Request Demo", href: "/contact" },
-      {
-        label: "Trust Center",
-        href: "https://trust.delve.co/quicksecure",
-        external: true,
-      },
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      { label: "X", href: "https://x.com/quicksecure", external: true },
-      {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/company/quicksecure",
-        external: true,
-      },
     ],
   },
 ];
