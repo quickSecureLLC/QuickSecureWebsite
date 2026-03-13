@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import LogoTicker from "@/components/ui/LogoTicker";
 
 export default function HeroSection() {
   return (
@@ -39,6 +40,7 @@ export default function HeroSection() {
             className="max-h-full w-auto rounded-none border-white/10 md:rounded-l-xl md:border-t md:border-b md:border-l"
           />
         </div>
+        <LogoTicker />
       </div>
     </section>
   );
