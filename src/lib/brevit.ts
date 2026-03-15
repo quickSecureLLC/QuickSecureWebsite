@@ -15,7 +15,7 @@ export interface BrevitPostSummary {
   audienceId: string | null;
   createdAt: string;
   publishedAt: string;
-  coverImage?: string;
+  coverImageUrl?: string;
 }
 
 /** Parse relatedKeywords which may come as a JSON string or array */

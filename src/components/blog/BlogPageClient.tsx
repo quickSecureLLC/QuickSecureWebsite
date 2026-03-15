@@ -298,9 +298,9 @@ function BlogCard({ post }: { post: BrevitPostSummary }) {
 
       {/* Image */}
       <div className="shrink-0 overflow-hidden rounded-xl sm:w-[240px] md:w-[280px]">
-        {post.coverImage ? (
+        {post.coverImageUrl ? (
           <Image
-            src={post.coverImage}
+            src={post.coverImageUrl}
             alt={post.title}
             width={560}
             height={373}

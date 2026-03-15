@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.fal.media",
+      },
+    ],
   },
   async headers() {
     return [
