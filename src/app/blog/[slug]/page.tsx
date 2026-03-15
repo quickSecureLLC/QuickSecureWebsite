@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import MarkdownRenderer from "@/components/blog/MarkdownRenderer";
-import { getBlogPost, getBlogPosts } from "@/lib/brevit";
+import { getBlogPost, getBlogPosts, parseRelatedKeywords } from "@/lib/brevit";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 
 export async function generateStaticParams() {
@@ -24,7 +24,7 @@ export async function generateMetadata({
   const post = await getBlogPost(slug);
   if (!post) return {};
 
-  const keywords = [post.focusKeyword, ...post.relatedKeywords].filter(
+  const keywords = [post.focusKeyword, ...parseRelatedKeywords(post.relatedKeywords)].filter(
     Boolean
   );
 

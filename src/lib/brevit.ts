@@ -6,16 +6,26 @@ export interface BrevitPostSummary {
   slug: string;
   metaDescription: string;
   focusKeyword: string;
-  relatedKeywords: string[];
+  relatedKeywords: string | string[];
   searchIntent: string;
   wordCount: number;
   seoScore: number;
   contentScore: number;
-  pillarId: string;
-  audienceId: string;
+  pillarId: string | null;
+  audienceId: string | null;
   createdAt: string;
   publishedAt: string;
   coverImage?: string;
+}
+
+/** Parse relatedKeywords which may come as a JSON string or array */
+export function parseRelatedKeywords(raw: string | string[]): string[] {
+  if (Array.isArray(raw)) return raw;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return [];
+  }
 }
 
 export interface BrevitPostDetail extends BrevitPostSummary {
@@ -36,7 +46,8 @@ export async function getBlogPosts(): Promise<BrevitPostSummary[]> {
 
   if (!res.ok) return [];
 
-  return res.json();
+  const data = await res.json();
+  return Array.isArray(data) ? data : data.posts ?? [];
 }
 
 export async function getBlogPost(
@@ -52,5 +63,6 @@ export async function getBlogPost(
 
   if (!res.ok) return null;
 
-  return res.json();
+  const data = await res.json();
+  return data.post ?? data;
 }
