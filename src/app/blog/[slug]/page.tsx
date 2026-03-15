@@ -6,6 +6,8 @@ import MarkdownRenderer from "@/components/blog/MarkdownRenderer";
 import { getBlogPost, getBlogPosts, parseRelatedKeywords } from "@/lib/brevit";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   try {
     const posts = await getBlogPosts();
