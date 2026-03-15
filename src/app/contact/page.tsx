@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Request Demo - QuickSecure",
+  title: "Request Demo",
   description: "Schedule a demo to see how QuickSecure keeps K-12 schools safe with emergency response, campus monitoring, and drill management.",
+  alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Request Demo - QuickSecure",
+    title: "Request Demo | QuickSecure",
     description: "Schedule a demo to see how QuickSecure keeps K-12 schools safe with emergency response, campus monitoring, and drill management.",
     siteName: "QuickSecure",
   },
@@ -14,6 +16,17 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Request Demo", path: "/contact" },
+            ])
+          ),
+        }}
+      />
       <style>{`footer { display: none; }`}</style>
       <section className="flex min-h-dvh items-center justify-center" style={{ paddingTop: "var(--top-offset)" }}>
         <div

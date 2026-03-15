@@ -6,10 +6,10 @@ import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Products", href: "/#products" },
   { label: "Solutions", href: "/#use-cases" },
-  { label: "Modules", href: "/#features" },
-  { label: "Security", href: "/#security" },
+  { label: "Our Story", href: "/our-story" },
+  { label: "Careers", href: "/careers" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Header() {

@@ -1,0 +1,109 @@
+# QuickSecure — Full Documentation for AI Systems
+
+> QuickSecure is a unified K-12 school safety platform that combines emergency response, daily operations, hardware, and integrations into one system. QuickSecure serves K-12 schools with products that streamline emergency workflows, campus monitoring, anonymous reporting, and compliance management.
+
+---
+
+## Products
+
+### QuickSecure Panic
+QuickSecure Panic is a mobile panic button app available on iOS and Android that enables teachers and staff to instantly trigger emergency alerts. It connects directly to 911 dispatch through RapidSOS integration, providing structured emergency workflows with real-time GPS tracking, role-based notifications, and two-way communication. QuickSecure Panic helps schools comply with Alyssa's Law, which requires schools in participating states to install silent panic alarm systems that connect directly to law enforcement. The app supports multiple emergency types including lockdown, fire, medical, and custom scenarios, each with configurable escalation workflows.
+
+URL: https://quicksecure.com/product/emergency-response
+
+### QuickSecure Nexus
+QuickSecure Nexus is a unified web dashboard that provides real-time campus monitoring and operational management. It displays live lock status, camera feeds, and access control information in a single interface. Nexus integrates with Student Information Systems (SIS) including PowerSchool, FACTS, and Veracross for roster syncing and teacher information. The dashboard serves as the central command center during both emergencies and daily operations, with role-based views for administrators, IT staff, facilities managers, and teachers.
+
+URL: https://quicksecure.com/product/campus-monitoring
+
+### RLS (Room Lockdown System)
+RLS is QuickSecure's physical hardware product — a room lockdown system that provides hardware-based emergency response capabilities for classrooms and campus buildings. RLS integrates with the QuickSecure software platform, enabling coordinated lockdown procedures that combine physical security with digital alerting and monitoring.
+
+---
+
+## Software Modules
+
+### Anonymous Tip Line
+AI-triaged reporting system with multilingual support and tiered escalation workflows. Students and community members can report safety concerns confidentially. Reports are automatically categorized by severity and routed to appropriate administrators. The tip line uses AI to assess urgency and ensure critical reports receive immediate attention.
+
+URL: https://quicksecure.com/product/tip-line
+
+### Mass Notifications
+Multi-channel alert system that sends notifications through push notifications, SMS, email, and in-app alerts simultaneously. Integrates directly with emergency response workflows so notifications trigger automatically during incidents. Also supports non-emergency communications like weather closures, schedule changes, and general announcements.
+
+### SOP Management
+Standard Operating Procedure management for emergency and daily operational workflows. Schools can create, distribute, and track compliance with safety procedures. SOPs are linked to emergency types so relevant procedures are surfaced automatically during incidents.
+
+### Asset Management
+Track and manage school safety equipment including AEDs, fire extinguishers, security cameras, access control hardware, and other safety infrastructure. Includes maintenance scheduling, compliance tracking, and location mapping.
+
+### Ticketing
+Facility and safety ticketing system for maintenance requests, incident reports, and operational tasks. Supports role-based assignment, priority levels, photo attachments, and automated archival. Integrates with other QuickSecure modules for seamless workflow management.
+
+### Drill Management
+Plan, execute, and document safety drills using the same workflows as real emergencies. Ensures staff are familiar with emergency procedures by practicing in the same system they'll use during actual events. Includes drill scheduling, participation tracking, and compliance reporting.
+
+URL: https://quicksecure.com/product/drill-management
+
+### Drill Compliance
+Tracks and reports on drill compliance requirements by state and district. Generates compliance documentation and alerts administrators when drills are due. Helps schools meet regulatory requirements for fire drills, lockdown drills, and other mandated safety exercises.
+
+---
+
+## Integrations
+
+QuickSecure integrates with:
+- **RapidSOS**: Direct-to-dispatch emergency alerting to 911 centers
+- **PowerSchool, FACTS, Veracross**: Student Information System (SIS) integration for roster syncing
+- **Camera systems**: Live feed integration in Nexus dashboard
+- **Access control systems**: Lock status monitoring and control
+- **AWS**: Cloud infrastructure for storage, video streaming, and monitoring
+
+---
+
+## Frequently Asked Questions
+
+### What is a school panic button system?
+A school panic button system is a mobile or hardware-based alert tool that allows teachers and staff to instantly notify administrators, security teams, and emergency responders during a crisis. QuickSecure Panic is a mobile app that connects directly to 911 dispatch through RapidSOS, providing structured emergency workflows with real-time GPS tracking, role-based notifications, and two-way communication.
+
+### How do schools comply with Alyssa's Law?
+Alyssa's Law requires schools in participating states to install silent panic alarm systems that connect directly to law enforcement. QuickSecure helps schools comply by providing QuickSecure Panic, a mobile panic button with direct-to-dispatch capability via RapidSOS integration. The platform ensures emergency alerts reach 911 centers within seconds, and includes drill management and compliance documentation tools.
+
+### What is the best anonymous tip line for schools?
+An effective school anonymous tip line provides multilingual support, AI-powered triage to prioritize urgent reports, and tiered escalation workflows. QuickSecure's Anonymous Tip Line module enables students and community members to report safety concerns confidentially. Reports are automatically categorized and routed to appropriate administrators based on severity.
+
+### Is QuickSecure FERPA compliant?
+Yes. QuickSecure is FERPA-aligned, operating as a "school official" under FERPA. The platform accesses student education records only to provide safety services as directed by educational institutions. Security measures include role-based access controls, encryption at rest and in transit, comprehensive audit logging, and data minimization practices.
+
+### How does a school mass notification system work?
+A school mass notification system sends urgent alerts to parents, staff, and stakeholders through multiple channels simultaneously — including push notifications, SMS, email, and in-app alerts. QuickSecure's Mass Notifications module integrates directly with emergency response workflows, triggering notifications automatically during incidents. It can also be used for non-emergency communications like weather closures and schedule changes.
+
+---
+
+## Security & Compliance
+
+- **FERPA-aligned**: Operates as a "school official" under FERPA
+- **Encryption**: Data encrypted at rest (PostgreSQL) and in transit (TLS)
+- **Access control**: Role-based permissions (Admin, IT, Facilities, Teacher, Janitor, custom roles)
+- **Audit logging**: Comprehensive logging of all platform actions
+- **Session management**: Secure tokens with automatic expiration; API tokens expire after 30 days
+- **Infrastructure**: AWS-hosted with Redis rate limiting and Helmet security headers
+- **Incident response**: 72-hour breach notification commitment
+- **Data minimization**: Only collects data necessary for safety operations
+- **Biometric auth**: Supported on mobile via Expo local auth
+
+---
+
+## Company Information
+
+- **Website**: https://quicksecure.com
+- **Request Demo**: https://quicksecure.com/contact
+- **Blog**: https://quicksecure.com/blog
+- **About**: https://quicksecure.com/our-story
+- **Careers**: https://quicksecure.com/careers
+- **Legal**: https://quicksecure.com/legal
+- **LinkedIn**: https://www.linkedin.com/company/quicksecurellc
+
+## Tagline
+
+Safer Schools Start Here
