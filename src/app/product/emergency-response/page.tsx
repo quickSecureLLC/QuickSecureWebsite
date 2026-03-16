@@ -34,7 +34,7 @@ export default function EmergencyResponsePage() {
             softwareApplicationSchema({
               name: "QuickSecure Panic",
               description: "Mobile panic button app with direct-to-dispatch via RapidSOS, structured emergency workflows, real-time GPS tracking, and two-way communication for K-12 schools.",
-              url: "https://quicksecure.com/product/emergency-response",
+              url: "https://quicksecure.us/product/emergency-response",
               category: "SecurityApplication",
               operatingSystem: "iOS, Android",
             })

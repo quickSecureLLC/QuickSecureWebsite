@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts } from "@/lib/brevit";
+import { getBlogPosts, slugifyCategory } from "@/lib/brevit";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://quicksecure.com";
+  const baseUrl = "https://quicksecure.us";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
     const categories = [...new Set(posts.map((p) => p.focusKeyword).filter(Boolean))];
     categoryRoutes = categories.map((cat) => ({
-      url: `${baseUrl}/blog/category/${encodeURIComponent(cat)}`,
+      url: `${baseUrl}/blog/category/${slugifyCategory(cat)}`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.5,

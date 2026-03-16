@@ -1,4 +1,4 @@
-const BASE_URL = "https://quicksecure.com";
+const BASE_URL = "https://quicksecure.us";
 
 export function organizationSchema() {
   return {

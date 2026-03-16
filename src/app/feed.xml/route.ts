@@ -1,6 +1,6 @@
 import { getBlogPosts } from "@/lib/brevit";
 
-const SITE_URL = "https://quicksecure.com";
+const SITE_URL = "https://quicksecure.us";
 
 function escapeXml(str: string): string {
   return str

@@ -34,7 +34,7 @@ export default function DrillManagementPage() {
             softwareApplicationSchema({
               name: "QuickSecure Drill Management",
               description: "Plan, execute, and document safety drills using the same workflows as real emergencies. Includes drill scheduling, compliance tracking, and reporting for K-12 schools.",
-              url: "https://quicksecure.com/product/drill-management",
+              url: "https://quicksecure.us/product/drill-management",
               category: "SecurityApplication",
             })
           ),

@@ -83,6 +83,14 @@ export default async function BlogPostPage({
     })
     .slice(0, 3);
 
+  // Chronological prev/next navigation
+  const sorted = [...allPosts].sort(
+    (a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
+  );
+  const currentIndex = sorted.findIndex((p) => p.slug === slug);
+  const prevPost = currentIndex > 0 ? sorted[currentIndex - 1] : null;
+  const nextPost = currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
+
   const publishedDate = new Date(post.publishedAt).toLocaleDateString(
     "en-US",
     { year: "numeric", month: "long", day: "numeric" }
@@ -109,7 +117,7 @@ export default async function BlogPostPage({
             blogPostingSchema({
               headline: post.title,
               description: post.metaDescription,
-              url: `https://quicksecure.com/blog/${slug}`,
+              url: `https://quicksecure.us/blog/${slug}`,
               datePublished: post.publishedAt,
               image: post.coverImageUrl,
               wordCount: post.wordCount,
@@ -216,7 +224,7 @@ export default async function BlogPostPage({
             {/* Share */}
             <hr className="my-10 border-white/10" />
             <ShareButtons
-              url={`https://quicksecure.com/blog/${slug}`}
+              url={`https://quicksecure.us/blog/${slug}`}
               title={post.title}
             />
           </article>
@@ -285,6 +293,42 @@ export default async function BlogPostPage({
                 ))}
               </div>
             </div>
+          )}
+
+          {/* Prev / Next Navigation */}
+          {(prevPost || nextPost) && (
+            <nav className="mx-auto mt-16 flex max-w-[760px] border-t border-white/10 pt-8">
+              <div className="flex-1">
+                {prevPost && (
+                  <Link
+                    href={`/blog/${prevPost.slug}`}
+                    className="group inline-flex flex-col gap-1"
+                  >
+                    <span className="text-[12px] uppercase tracking-wider text-white/40 transition-colors group-hover:text-white/60">
+                      &larr; Previous Article
+                    </span>
+                    <span className="line-clamp-1 text-[15px] text-white transition-opacity group-hover:opacity-70">
+                      {prevPost.title}
+                    </span>
+                  </Link>
+                )}
+              </div>
+              <div className="flex-1 text-right">
+                {nextPost && (
+                  <Link
+                    href={`/blog/${nextPost.slug}`}
+                    className="group inline-flex flex-col items-end gap-1"
+                  >
+                    <span className="text-[12px] uppercase tracking-wider text-white/40 transition-colors group-hover:text-white/60">
+                      Next Article &rarr;
+                    </span>
+                    <span className="line-clamp-1 text-[15px] text-white transition-opacity group-hover:opacity-70">
+                      {nextPost.title}
+                    </span>
+                  </Link>
+                )}
+              </div>
+            </nav>
           )}
         </Container>
       </section>

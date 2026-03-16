@@ -34,7 +34,7 @@ export default function TipLinePage() {
             softwareApplicationSchema({
               name: "QuickSecure Anonymous Tip Line",
               description: "AI-triaged anonymous reporting system with multilingual support and tiered escalation workflows for K-12 school safety.",
-              url: "https://quicksecure.com/product/tip-line",
+              url: "https://quicksecure.us/product/tip-line",
               category: "SecurityApplication",
             })
           ),

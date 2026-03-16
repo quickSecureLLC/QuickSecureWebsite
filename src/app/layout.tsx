@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { organizationSchema, webSiteSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quicksecure.com"),
+  metadataBase: new URL("https://quicksecure.us"),
   title: {
     default: "QuickSecure - Safer Schools Start Here",
     template: "%s | QuickSecure",

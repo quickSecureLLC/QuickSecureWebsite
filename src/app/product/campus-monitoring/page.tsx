@@ -34,7 +34,7 @@ export default function CampusMonitoringPage() {
             softwareApplicationSchema({
               name: "QuickSecure Nexus",
               description: "Unified web dashboard for campus monitoring with live lock status, camera feeds, access control, and SIS integrations for K-12 schools.",
-              url: "https://quicksecure.com/product/campus-monitoring",
+              url: "https://quicksecure.us/product/campus-monitoring",
               category: "SecurityApplication",
             })
           ),
