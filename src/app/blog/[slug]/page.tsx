@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import MarkdownRenderer from "@/components/blog/MarkdownRenderer";
-import { getBlogPost, getBlogPosts, parseRelatedKeywords } from "@/lib/brevit";
+import { getBlogPost, getBlogPosts, parseRelatedKeywords, injectImagesIntoMarkdown } from "@/lib/brevit";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 60;
@@ -119,8 +119,25 @@ export default async function BlogPostPage({
               {post.title}
             </h1>
 
+            {/* Cover image */}
+            {post.coverImageUrl && (
+              <figure className="mb-10">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={post.coverImageUrl}
+                  alt={post.title}
+                  className="w-full rounded-lg"
+                />
+              </figure>
+            )}
+
             {/* Content */}
-            <MarkdownRenderer content={post.markdownContent} />
+            <MarkdownRenderer
+              content={injectImagesIntoMarkdown(
+                post.markdownContent,
+                post.images ?? []
+              )}
+            />
 
             {/* Sources */}
             {post.sources && post.sources.length > 0 && (

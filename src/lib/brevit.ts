@@ -28,11 +28,43 @@ export function parseRelatedKeywords(raw: string | string[]): string[] {
   }
 }
 
+export interface BrevitImage {
+  originalUrl: string;
+  altText: string;
+  caption: string;
+  width: number;
+  height: number;
+  position: number;
+}
+
 export interface BrevitPostDetail extends BrevitPostSummary {
   markdownContent: string;
   headingStructure: { level: number; text: string }[];
   sources: { title: string; url: string; snippet?: string }[];
   qualityNotes: string[];
+  images: BrevitImage[];
+}
+
+/** Replace <!-- BLOG_IMAGE: index=N, ... --> placeholders with actual images */
+export function injectImagesIntoMarkdown(
+  markdown: string,
+  images: BrevitImage[]
+): string {
+  if (!images || images.length === 0) {
+    // Strip any leftover placeholders even if no images
+    return markdown.replace(/<!--\s*BLOG_IMAGE:.*?-->\n*/g, "");
+  }
+
+  const byIndex = new Map(images.map((img) => [img.position, img]));
+
+  return markdown.replace(
+    /<!--\s*BLOG_IMAGE:\s*index=(\d+).*?-->\n*/g,
+    (_, idx) => {
+      const img = byIndex.get(Number(idx));
+      if (!img) return "";
+      return `\n![${img.altText}](${img.originalUrl})\n\n`;
+    }
+  );
 }
 
 export async function getBlogPosts(): Promise<BrevitPostSummary[]> {

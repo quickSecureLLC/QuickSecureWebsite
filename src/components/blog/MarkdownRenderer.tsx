@@ -1,8 +1,10 @@
 "use client";
 
+import React from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { Components } from "react-markdown";
+import type { Element } from "hast";
 
 const components: Components = {
   h1: ({ children }) => (
@@ -20,9 +22,17 @@ const components: Components = {
       {children}
     </h3>
   ),
-  p: ({ children }) => (
-    <p className="mb-5 text-[15px] leading-[1.7] text-white/70">{children}</p>
-  ),
+  p: ({ children, node }) => {
+    // If the paragraph contains an image, render without <p> wrapper
+    // to avoid invalid <p><figure> nesting that breaks hydration
+    const hasImage = (node as Element)?.children?.some(
+      (child) => child.type === "element" && (child as Element).tagName === "img"
+    );
+    if (hasImage) return <>{children}</>;
+    return (
+      <p className="mb-5 text-[15px] leading-[1.7] text-white/70">{children}</p>
+    );
+  },
   ul: ({ children }) => (
     <ul className="mb-6 space-y-2 pl-5">{children}</ul>
   ),
