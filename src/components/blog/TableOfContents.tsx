@@ -22,8 +22,8 @@ export default function TableOfContents({
 }) {
   const [open, setOpen] = useState(true);
 
-  // Only show H2 and H3 headings
-  const filtered = headings.filter((h) => h.level === 2 || h.level === 3);
+  // Only show H2 headings (major sections)
+  const filtered = headings.filter((h) => h.level === 2);
   if (filtered.length < 3) return null;
 
   return (
@@ -53,10 +53,7 @@ export default function TableOfContents({
             <li key={i}>
               <a
                 href={`#${slugify(h.text)}`}
-                className={cn(
-                  "block text-[13px] leading-[1.5] text-white/40 transition-colors hover:text-white/70",
-                  h.level === 3 && "pl-4"
-                )}
+                className="block text-[13px] leading-[1.5] text-white/40 transition-colors hover:text-white/70"
               >
                 {h.text}
               </a>
