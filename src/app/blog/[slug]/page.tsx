@@ -223,10 +223,7 @@ export default async function BlogPostPage({
             )}
             {/* Share */}
             <hr className="my-10 border-white/10" />
-            <ShareButtons
-              url={`https://quicksecure.us/blog/${slug}`}
-              title={post.title}
-            />
+            <ShareButtons title={post.title} />
           </article>
 
           {/* CTA Block */}

@@ -1,25 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function ShareButtons({
-  url,
-  title,
-}: {
-  url: string;
-  title: string;
-}) {
+export default function ShareButtons({ title }: { title: string }) {
   const [copied, setCopied] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
 
-  const encodedUrl = encodeURIComponent(url);
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
+  const encodedUrl = encodeURIComponent(currentUrl);
   const encodedTitle = encodeURIComponent(title);
 
   function copyLink() {
-    navigator.clipboard.writeText(url).then(() => {
+    navigator.clipboard.writeText(currentUrl).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   }
+
+  if (!currentUrl) return null;
 
   return (
     <div className="flex items-center gap-4">
