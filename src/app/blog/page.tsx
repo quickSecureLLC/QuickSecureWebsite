@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getBlogPosts } from "@/lib/brevit";
 import BlogPageClient from "@/components/blog/BlogPageClient";
 
+export const revalidate = 600;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:

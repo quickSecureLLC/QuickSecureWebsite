@@ -18,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   let blogRoutes: MetadataRoute.Sitemap = [];
+  let categoryRoutes: MetadataRoute.Sitemap = [];
   try {
     const posts = await getBlogPosts();
     blogRoutes = posts.map((post) => ({
@@ -26,9 +27,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     }));
+    const categories = [...new Set(posts.map((p) => p.focusKeyword).filter(Boolean))];
+    categoryRoutes = categories.map((cat) => ({
+      url: `${baseUrl}/blog/category/${encodeURIComponent(cat)}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    }));
   } catch {
     // API unavailable — skip blog URLs
   }
 
-  return [...staticRoutes, ...blogRoutes];
+  return [...staticRoutes, ...blogRoutes, ...categoryRoutes];
 }

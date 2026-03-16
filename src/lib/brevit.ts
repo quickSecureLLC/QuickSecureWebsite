@@ -43,6 +43,15 @@ export interface BrevitPostDetail extends BrevitPostSummary {
   sources: { title: string; url: string; snippet?: string }[];
   qualityNotes: string[];
   images: BrevitImage[];
+  faqSchema?: { question: string; answer: string }[];
+}
+
+/** Convert a focusKeyword to a URL-safe slug */
+export function slugifyCategory(keyword: string): string {
+  return keyword
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 /** Replace <!-- BLOG_IMAGE: index=N, ... --> placeholders with actual images */
@@ -73,7 +82,7 @@ export async function getBlogPosts(): Promise<BrevitPostSummary[]> {
 
   const res = await fetch(`${API_BASE}/posts`, {
     headers: { "x-api-key": key },
-    next: { revalidate: 60 },
+    next: { revalidate: 600 },
   });
 
   if (!res.ok) return [];
@@ -90,7 +99,7 @@ export async function getBlogPost(
 
   const res = await fetch(`${API_BASE}/posts/${encodeURIComponent(slug)}`, {
     headers: { "x-api-key": key },
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) return null;

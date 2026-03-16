@@ -59,7 +59,7 @@ export function faqSchema(
   };
 }
 
-export function articleSchema(opts: {
+export function blogPostingSchema(opts: {
   headline: string;
   description: string;
   url: string;
@@ -67,18 +67,24 @@ export function articleSchema(opts: {
   dateModified?: string;
   image?: string;
   keywords?: string[];
+  wordCount?: number;
 }) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: opts.headline,
     description: opts.description,
     url: opts.url,
     datePublished: opts.datePublished,
-    ...(opts.dateModified && { dateModified: opts.dateModified }),
+    dateModified: opts.dateModified || opts.datePublished,
     ...(opts.image && { image: opts.image }),
     ...(opts.keywords?.length && { keywords: opts.keywords.join(", ") }),
-    author: { "@id": `${BASE_URL}/#organization` },
+    ...(opts.wordCount && { wordCount: opts.wordCount }),
+    author: {
+      "@type": "Organization",
+      name: "QuickSecure Safety Team",
+      url: BASE_URL,
+    },
     publisher: { "@id": `${BASE_URL}/#organization` },
   };
 }

@@ -7,6 +7,8 @@ import Container from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 import type { BrevitPostSummary } from "@/lib/brevit";
 
+const POSTS_PER_PAGE = 12;
+
 /* ─── Icons ─── */
 
 function SearchIcon({ className }: { className?: string }) {
@@ -74,12 +76,15 @@ function DocIcon({ className }: { className?: string }) {
 
 export default function BlogPageClient({
   posts,
+  categoryTitle,
 }: {
   posts: BrevitPostSummary[];
+  categoryTitle?: string;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   const topics = useMemo(
     () =>
@@ -103,6 +108,17 @@ export default function BlogPageClient({
     return result;
   }, [posts, searchQuery, selectedTopic]);
 
+  // Reset page when filters change
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const currentPage = Math.min(page, totalPages || 1);
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  const title = categoryTitle || "Blog";
+  const showSidebar = !categoryTitle; // Hide sidebar on category pages (already filtered)
+
   return (
     <section
       className="pb-16 sm:pb-20 md:pb-24"
@@ -111,12 +127,23 @@ export default function BlogPageClient({
       {/* ── Hero ── */}
       <div className="border-b border-white/10 px-5 pb-10 pt-16 sm:px-12 sm:pb-12 sm:pt-20 md:px-30 md:pb-14 md:pt-24">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <h1 className="text-[28px] leading-[0.9] tracking-[-0.035em] text-white sm:text-[36px] md:text-[48px]">
-            Blog
-          </h1>
+          <div>
+            {categoryTitle && (
+              <Link
+                href="/blog"
+                className="mb-3 inline-block text-[13px] text-white/40 transition-colors hover:text-white/60"
+              >
+                &larr; All Articles
+              </Link>
+            )}
+            <h1 className="text-[28px] leading-[0.9] tracking-[-0.035em] text-white sm:text-[36px] md:text-[48px]">
+              {title}
+            </h1>
+          </div>
           <p className="text-[15px] leading-[1.6] text-white/50 md:max-w-[420px] md:text-right">
-            Insights on K-12 school safety, emergency preparedness, and campus
-            operations.
+            {categoryTitle
+              ? `Articles about ${categoryTitle.toLowerCase()} for K-12 schools.`
+              : "Insights on K-12 school safety, emergency preparedness, and campus operations."}
           </p>
         </div>
       </div>
@@ -130,128 +157,176 @@ export default function BlogPageClient({
         ) : (
           <div className="flex gap-12 pt-10 md:pt-12">
             {/* ── Desktop Sidebar ── */}
-            <aside
-              className="hidden w-[280px] shrink-0 md:block"
-              style={{
-                position: "sticky",
-                top: "calc(var(--top-offset) + 24px)",
-                alignSelf: "flex-start",
-              }}
-            >
-              {/* Search */}
-              <div className="relative">
-                <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-lg border border-white/10 bg-surface-raised py-2.5 pl-9 pr-3 text-[14px] text-white placeholder-white/30 outline-none transition-colors focus:border-white/20"
-                />
-              </div>
-
-              {/* Topics */}
-              {topics.length > 0 && (
-                <div className="mt-8">
-                  <span className="text-[12px] uppercase tracking-wider text-white/40">
-                    Topic
-                  </span>
-                  <div className="mt-3 flex flex-col gap-1">
-                    {topics.map((topic) => (
-                      <button
-                        key={topic}
-                        onClick={() =>
-                          setSelectedTopic(
-                            selectedTopic === topic ? null : topic
-                          )
-                        }
-                        className={cn(
-                          "rounded-lg px-3 py-2 text-left text-[14px] transition-colors",
-                          selectedTopic === topic
-                            ? "bg-white/10 text-white"
-                            : "text-white/50 hover:text-white/70"
-                        )}
-                      >
-                        {topic}
-                      </button>
-                    ))}
-                  </div>
+            {showSidebar && (
+              <aside
+                className="hidden w-[280px] shrink-0 md:block"
+                style={{
+                  position: "sticky",
+                  top: "calc(var(--top-offset) + 24px)",
+                  alignSelf: "flex-start",
+                }}
+              >
+                {/* Search */}
+                <div className="relative">
+                  <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                  <input
+                    type="text"
+                    placeholder="Search articles..."
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setPage(1);
+                    }}
+                    className="w-full rounded-lg border border-white/10 bg-surface-raised py-2.5 pl-9 pr-3 text-[14px] text-white placeholder-white/30 outline-none transition-colors focus:border-white/20"
+                  />
                 </div>
-              )}
-            </aside>
+
+                {/* Topics */}
+                {topics.length > 0 && (
+                  <div className="mt-8">
+                    <span className="text-[12px] uppercase tracking-wider text-white/40">
+                      Topic
+                    </span>
+                    <div className="mt-3 flex flex-col gap-1">
+                      {topics.map((topic) => (
+                        <button
+                          key={topic}
+                          onClick={() => {
+                            setSelectedTopic(
+                              selectedTopic === topic ? null : topic
+                            );
+                            setPage(1);
+                          }}
+                          className={cn(
+                            "rounded-lg px-3 py-2 text-left text-[14px] transition-colors",
+                            selectedTopic === topic
+                              ? "bg-white/10 text-white"
+                              : "text-white/50 hover:text-white/70"
+                          )}
+                        >
+                          {topic}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </aside>
+            )}
 
             {/* ── Content Area ── */}
             <div className="min-w-0 flex-1">
               {/* Mobile filters */}
-              <div className="mb-6 md:hidden">
-                <div className="flex gap-2">
-                  <div className="relative flex-1">
-                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
-                    <input
-                      type="text"
-                      placeholder="Search articles..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full rounded-lg border border-white/10 bg-surface-raised py-2.5 pl-9 pr-3 text-[14px] text-white placeholder-white/30 outline-none transition-colors focus:border-white/20"
-                    />
-                  </div>
-                  {topics.length > 0 && (
-                    <button
-                      onClick={() => setSidebarOpen(!sidebarOpen)}
-                      className={cn(
-                        "flex shrink-0 items-center justify-center rounded-lg border border-white/10 px-3 transition-colors",
-                        sidebarOpen
-                          ? "bg-white/10 text-white"
-                          : "text-white/50"
-                      )}
-                      aria-label="Toggle topic filters"
-                      aria-expanded={sidebarOpen}
-                    >
-                      <FilterIcon />
-                    </button>
-                  )}
-                </div>
-
-                {/* Collapsible pill drawer */}
-                <div
-                  className={cn(
-                    "overflow-hidden transition-all duration-300",
-                    sidebarOpen ? "max-h-[200px] pt-3" : "max-h-0"
-                  )}
-                >
-                  <div className="flex flex-wrap gap-2">
-                    {topics.map((topic) => (
+              {showSidebar && (
+                <div className="mb-6 md:hidden">
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+                      <input
+                        type="text"
+                        placeholder="Search articles..."
+                        value={searchQuery}
+                        onChange={(e) => {
+                          setSearchQuery(e.target.value);
+                          setPage(1);
+                        }}
+                        className="w-full rounded-lg border border-white/10 bg-surface-raised py-2.5 pl-9 pr-3 text-[14px] text-white placeholder-white/30 outline-none transition-colors focus:border-white/20"
+                      />
+                    </div>
+                    {topics.length > 0 && (
                       <button
-                        key={topic}
-                        onClick={() =>
-                          setSelectedTopic(
-                            selectedTopic === topic ? null : topic
-                          )
-                        }
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
                         className={cn(
-                          "rounded-full px-3 py-1.5 text-[13px] transition-colors",
-                          selectedTopic === topic
+                          "flex shrink-0 items-center justify-center rounded-lg border border-white/10 px-3 transition-colors",
+                          sidebarOpen
                             ? "bg-white/10 text-white"
-                            : "border border-white/10 text-white/50 hover:text-white/70"
+                            : "text-white/50"
                         )}
+                        aria-label="Toggle topic filters"
+                        aria-expanded={sidebarOpen}
                       >
-                        {topic}
+                        <FilterIcon />
                       </button>
-                    ))}
+                    )}
+                  </div>
+
+                  {/* Collapsible pill drawer */}
+                  <div
+                    className={cn(
+                      "overflow-hidden transition-all duration-300",
+                      sidebarOpen ? "max-h-[200px] pt-3" : "max-h-0"
+                    )}
+                  >
+                    <div className="flex flex-wrap gap-2">
+                      {topics.map((topic) => (
+                        <button
+                          key={topic}
+                          onClick={() => {
+                            setSelectedTopic(
+                              selectedTopic === topic ? null : topic
+                            );
+                            setPage(1);
+                          }}
+                          className={cn(
+                            "rounded-full px-3 py-1.5 text-[13px] transition-colors",
+                            selectedTopic === topic
+                              ? "bg-white/10 text-white"
+                              : "border border-white/10 text-white/50 hover:text-white/70"
+                          )}
+                        >
+                          {topic}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Card list */}
-              {filteredPosts.length === 0 ? (
+              {paginatedPosts.length === 0 ? (
                 <p className="pt-8 text-center text-[15px] text-white/40">
                   No articles match your search.
                 </p>
               ) : (
                 <div className="divide-y divide-white/10">
-                  {filteredPosts.map((post) => (
+                  {paginatedPosts.map((post) => (
                     <BlogCard key={post.id} post={post} />
                   ))}
+                </div>
+              )}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="mt-10 flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="rounded-lg border border-white/10 px-3 py-2 text-[13px] text-white/50 transition-colors hover:text-white/70 disabled:opacity-30 disabled:hover:text-white/50"
+                  >
+                    Previous
+                  </button>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (p) => (
+                      <button
+                        key={p}
+                        onClick={() => setPage(p)}
+                        className={cn(
+                          "h-9 w-9 rounded-lg text-[13px] transition-colors",
+                          p === currentPage
+                            ? "bg-white/10 text-white"
+                            : "text-white/50 hover:text-white/70"
+                        )}
+                      >
+                        {p}
+                      </button>
+                    )
+                  )}
+                  <button
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    className="rounded-lg border border-white/10 px-3 py-2 text-[13px] text-white/50 transition-colors hover:text-white/70 disabled:opacity-30 disabled:hover:text-white/50"
+                  >
+                    Next
+                  </button>
                 </div>
               )}
             </div>

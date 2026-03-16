@@ -6,22 +6,41 @@ import remarkGfm from "remark-gfm";
 import type { Components } from "react-markdown";
 import type { Element } from "hast";
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function getTextContent(children: React.ReactNode): string {
+  return React.Children.toArray(children)
+    .map((child) => (typeof child === "string" ? child : ""))
+    .join("");
+}
+
 const components: Components = {
   h1: ({ children }) => (
     <h1 className="text-[28px] leading-[1.1] tracking-[-0.035em] text-white sm:text-[36px] md:text-[44px]">
       {children}
     </h1>
   ),
-  h2: ({ children }) => (
-    <h2 className="mb-5 mt-12 text-[22px] leading-[1.1] tracking-[-0.02em] text-white sm:text-[26px]">
-      {children}
-    </h2>
-  ),
-  h3: ({ children }) => (
-    <h3 className="mb-3 mt-8 text-[18px] leading-[1.2] text-white sm:text-[20px]">
-      {children}
-    </h3>
-  ),
+  h2: ({ children }) => {
+    const id = slugify(getTextContent(children));
+    return (
+      <h2 id={id} className="mb-5 mt-12 text-[22px] leading-[1.1] tracking-[-0.02em] text-white sm:text-[26px]">
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children }) => {
+    const id = slugify(getTextContent(children));
+    return (
+      <h3 id={id} className="mb-3 mt-8 text-[18px] leading-[1.2] text-white sm:text-[20px]">
+        {children}
+      </h3>
+    );
+  },
   p: ({ children, node }) => {
     // If the paragraph contains an image, render without <p> wrapper
     // to avoid invalid <p><figure> nesting that breaks hydration
