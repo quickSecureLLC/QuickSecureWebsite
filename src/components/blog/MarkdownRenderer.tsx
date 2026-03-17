@@ -3,6 +3,7 @@
 import React from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import NextImage from "next/image";
 import type { Components } from "react-markdown";
 import type { Element } from "hast";
 
@@ -118,17 +119,32 @@ const components: Components = {
     );
   },
   pre: ({ children }) => <pre className="mb-6">{children}</pre>,
-  img: ({ src, alt }) => (
-    <figure className="mb-6">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt || ""} className="w-full rounded-lg" />
-      {alt && (
-        <figcaption className="mt-2 text-center text-[13px] text-white/40">
-          {alt}
-        </figcaption>
-      )}
-    </figure>
-  ),
+  img: ({ src, alt }) => {
+    const isFalMedia = typeof src === "string" && src.includes("fal.media");
+    return (
+      <figure className="mb-6">
+        {isFalMedia ? (
+          <NextImage
+            src={src!}
+            alt={alt || ""}
+            width={0}
+            height={0}
+            sizes="(max-width: 768px) 100vw, 760px"
+            className="w-full rounded-lg"
+            style={{ width: "100%", height: "auto" }}
+          />
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img src={src} alt={alt || ""} className="w-full rounded-lg" />
+        )}
+        {alt && (
+          <figcaption className="mt-2 text-center text-[13px] text-white/40">
+            {alt}
+          </figcaption>
+        )}
+      </figure>
+    );
+  },
 };
 
 export default function MarkdownRenderer({ content }: { content: string }) {

@@ -78,5 +78,4 @@
   [data-marquee] {
     animation: marquee var(--marquee-duration, 45s) linear infinite;
     will-change: transform;
-  }
-}
+  }}

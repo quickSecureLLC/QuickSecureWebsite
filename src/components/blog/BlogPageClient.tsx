@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
+import EmailCapture from "@/components/blog/EmailCapture";
 import type { BrevitPostSummary } from "@/lib/brevit";
 
 const POSTS_PER_PAGE = 12;
@@ -116,6 +117,12 @@ export default function BlogPageClient({
     currentPage * POSTS_PER_PAGE
   );
 
+  // Featured post: most recent, only on page 1 with no active search/filter
+  const isFiltered = !!searchQuery.trim() || !!selectedTopic;
+  const showFeatured = !categoryTitle && !isFiltered && currentPage === 1 && filteredPosts.length > 0;
+  const featuredPost = showFeatured ? filteredPosts[0] : null;
+  const listPosts = showFeatured ? paginatedPosts.filter((p) => p.id !== featuredPost?.id) : paginatedPosts;
+
   const title = categoryTitle || "Blog";
   const showSidebar = !categoryTitle; // Hide sidebar on category pages (already filtered)
 
@@ -210,6 +217,11 @@ export default function BlogPageClient({
                     </div>
                   </div>
                 )}
+
+                {/* Email Capture */}
+                <div className="mt-8">
+                  <EmailCapture />
+                </div>
               </aside>
             )}
 
@@ -281,16 +293,74 @@ export default function BlogPageClient({
                 </div>
               )}
 
+              {/* Featured post hero */}
+              {featuredPost && (
+                <Link
+                  href={`/blog/${featuredPost.slug}`}
+                  className="group relative mb-10 block overflow-hidden rounded-xl border border-white/10 transition-colors hover:border-white/20"
+                >
+                  <div className="aspect-[16/9] w-full overflow-hidden">
+                    {featuredPost.coverImageUrl ? (
+                      <Image
+                        src={featuredPost.coverImageUrl}
+                        alt={featuredPost.title}
+                        width={1200}
+                        height={675}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        sizes="(max-width: 768px) 100vw, 900px"
+                        priority
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-gradient-to-br from-surface-raised to-navy">
+                        <DocIcon className="text-white/15" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <div className="mb-3 flex flex-wrap items-center gap-3 text-[12px] text-white/60">
+                      {featuredPost.focusKeyword && (
+                        <span className="rounded-full bg-yellow/20 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-yellow">
+                          {featuredPost.focusKeyword}
+                        </span>
+                      )}
+                      <time>
+                        {new Date(featuredPost.publishedAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </time>
+                      <span>&middot;</span>
+                      <span>{Math.ceil(featuredPost.wordCount / 250)} min read</span>
+                    </div>
+                    <h2 className="mb-2 text-[22px] leading-[1.15] text-white sm:text-[28px] md:text-[32px]">
+                      {featuredPost.title}
+                    </h2>
+                    <p className="line-clamp-2 text-[14px] leading-[1.6] text-white/60 sm:text-[15px]">
+                      {featuredPost.metaDescription}
+                    </p>
+                  </div>
+                </Link>
+              )}
+
               {/* Card list */}
-              {paginatedPosts.length === 0 ? (
+              {listPosts.length === 0 && !featuredPost ? (
                 <p className="pt-8 text-center text-[15px] text-white/40">
                   No articles match your search.
                 </p>
-              ) : (
+              ) : listPosts.length > 0 ? (
                 <div className="divide-y divide-white/10">
-                  {paginatedPosts.map((post) => (
+                  {listPosts.map((post) => (
                     <BlogCard key={post.id} post={post} />
                   ))}
+                </div>
+              ) : null}
+
+              {/* Mobile Email Capture */}
+              {showSidebar && (
+                <div className="mt-10 md:hidden">
+                  <EmailCapture />
                 </div>
               )}
 
