@@ -15,31 +15,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    try {
-      const sheet = await getSubscriberSheet();
-      const rows = await sheet.getRows();
-      const isDuplicate = rows.some(
-        (r) => r.get("Email")?.toLowerCase() === email
-      );
+    const sheet = await getSubscriberSheet();
+    const rows = await sheet.getRows();
+    const isDuplicate = rows.some(
+      (r) => r.get("Email")?.toLowerCase() === email
+    );
 
-      if (!isDuplicate) {
-        await sheet.addRow({
-          Email: email,
-          "Subscribed At": new Date().toISOString(),
-          Source: "blog-sidebar",
-        });
-      }
-    } catch (err) {
-      // Fallback: log so no emails are silently lost
-      console.error("[subscribe] Sheets API error:", err);
-      console.log("[subscribe] Fallback log — email:", email);
+    if (!isDuplicate) {
+      await sheet.addRow({
+        Email: email,
+        "Subscribed At": new Date().toISOString(),
+        Source: "blog-sidebar",
+      });
     }
 
-    return NextResponse.json({ success: true });
-  } catch {
+    return NextResponse.json({ success: true, duplicate: isDuplicate });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[subscribe] Error:", message);
     return NextResponse.json(
-      { error: "Invalid request" },
-      { status: 400 }
+      { error: message },
+      { status: 500 }
     );
   }
 }
