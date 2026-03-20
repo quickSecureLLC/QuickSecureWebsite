@@ -4,26 +4,26 @@
 
 ## Products
 
-- [QuickSecure Panic](https://quicksecure.com/product/emergency-response): Mobile panic button app with direct-to-dispatch via RapidSOS, structured emergency workflows, real-time GPS tracking, and two-way communication. Helps schools comply with Alyssa's Law.
-- [QuickSecure Nexus](https://quicksecure.com/product/campus-monitoring): Unified web dashboard for campus monitoring, lock status, camera feeds, access control, and SIS integrations (PowerSchool, FACTS, Veracross).
-- [RLS Hardware](https://quicksecure.com): Physical room lockdown system providing hardware-based emergency response capabilities for classrooms and campus buildings.
+- [QuickSecure Panic](https://quicksecure.us/product/emergency-response): Mobile panic button app with direct-to-dispatch via RapidSOS, structured emergency workflows, real-time GPS tracking, and two-way communication. Helps schools comply with Alyssa's Law.
+- [QuickSecure Nexus](https://quicksecure.us/product/campus-monitoring): Unified web dashboard for campus monitoring, lock status, camera feeds, access control, and SIS integrations (PowerSchool, FACTS, Veracross).
+- [RLS Hardware](https://quicksecure.us): Physical room lockdown system providing hardware-based emergency response capabilities for classrooms and campus buildings.
 
 ## Modules
 
-- [Anonymous Tip Line](https://quicksecure.com/product/tip-line): AI-triaged reporting with multilingual support and tiered escalation for student safety concerns.
-- [Mass Notifications](https://quicksecure.com): Multi-channel alert system (push, SMS, email, in-app) integrated with emergency response workflows.
-- [SOP Management](https://quicksecure.com): Standard Operating Procedure management for emergency and daily operational workflows.
-- [Asset Management](https://quicksecure.com): Track and manage school safety equipment, AEDs, fire extinguishers, and security hardware.
-- [Ticketing](https://quicksecure.com): Facility and safety ticketing system for maintenance requests and incident tracking.
-- [Drill Management](https://quicksecure.com/product/drill-management): Plan, execute, and document safety drills using the same workflows as real emergencies. Includes drill compliance tracking.
+- [Anonymous Tip Line](https://quicksecure.us/product/tip-line): AI-triaged reporting with multilingual support and tiered escalation for student safety concerns.
+- [Mass Notifications](https://quicksecure.us): Multi-channel alert system (push, SMS, email, in-app) integrated with emergency response workflows.
+- [SOP Management](https://quicksecure.us): Standard Operating Procedure management for emergency and daily operational workflows.
+- [Asset Management](https://quicksecure.us): Track and manage school safety equipment, AEDs, fire extinguishers, and security hardware.
+- [Ticketing](https://quicksecure.us): Facility and safety ticketing system for maintenance requests and incident tracking.
+- [Drill Management](https://quicksecure.us/product/drill-management): Plan, execute, and document safety drills using the same workflows as real emergencies. Includes drill compliance tracking.
 
 ## Company Information
 
-- Website: https://quicksecure.com
-- Contact: https://quicksecure.com/contact
-- Blog: https://quicksecure.com/blog
+- Website: https://quicksecure.us
+- Contact: https://quicksecure.us/contact
+- Blog: https://quicksecure.us/blog
 - LinkedIn: https://www.linkedin.com/company/quicksecurellc
-- Legal & Privacy: https://quicksecure.com/legal
+- Legal & Privacy: https://quicksecure.us/legal
 
 ## Compliance & Security
 
@@ -31,4 +31,4 @@ QuickSecure is FERPA-aligned, operating as a "school official" under FERPA. The 
 
 ## Optional
 
-- [Full documentation](https://quicksecure.com/llms-full.txt)
+- [Full documentation](https://quicksecure.us/llms-full.txt)

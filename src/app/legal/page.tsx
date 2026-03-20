@@ -125,8 +125,8 @@ export default function LegalPage() {
                   school safety, emergency response, and campus operations. You
                   may not use the Platform to transmit false emergency alerts,
                   harass individuals, or circumvent access controls. Misuse of
-                  emergency dispatch features — including false activation of
-                  direct-to-dispatch via RapidSOS — may result in immediate
+                  emergency dispatch features, including false activation of
+                  direct-to-dispatch via RapidSOS, may result in immediate
                   account termination and may carry legal consequences.
                 </p>
                 <h3 className="mt-2 text-[16px] text-white/80">
@@ -174,7 +174,7 @@ export default function LegalPage() {
                 </h3>
                 <p>
                   Student data accessed through SIS integrations is limited to
-                  what is necessary for safety operations — primarily roster
+                  what is necessary for safety operations, primarily roster
                   information for emergency workflows such as fire evacuation
                   checks. We do not sell, share, or use student data for
                   advertising, profiling, or any purpose unrelated to school

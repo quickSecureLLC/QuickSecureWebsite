@@ -17,8 +17,8 @@ export default function Header() {
 
   return (
     <header
-      className="fixed left-0 right-0 z-50 bg-surface transition-[top] duration-300"
-      style={{ top: "var(--banner-h)" }}
+      className="fixed left-0 right-0 z-50 bg-surface/70 backdrop-blur-md transition-[top] duration-300"
+      style={{ top: 0 }}
     >
       <div className="relative flex h-[60px] items-center px-5 sm:px-12 md:px-30">
         {/* Logo */}

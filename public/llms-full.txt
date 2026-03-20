@@ -9,12 +9,12 @@
 ### QuickSecure Panic
 QuickSecure Panic is a mobile panic button app available on iOS and Android that enables teachers and staff to instantly trigger emergency alerts. It connects directly to 911 dispatch through RapidSOS integration, providing structured emergency workflows with real-time GPS tracking, role-based notifications, and two-way communication. QuickSecure Panic helps schools comply with Alyssa's Law, which requires schools in participating states to install silent panic alarm systems that connect directly to law enforcement. The app supports multiple emergency types including lockdown, fire, medical, and custom scenarios, each with configurable escalation workflows.
 
-URL: https://quicksecure.com/product/emergency-response
+URL: https://quicksecure.us/product/emergency-response
 
 ### QuickSecure Nexus
 QuickSecure Nexus is a unified web dashboard that provides real-time campus monitoring and operational management. It displays live lock status, camera feeds, and access control information in a single interface. Nexus integrates with Student Information Systems (SIS) including PowerSchool, FACTS, and Veracross for roster syncing and teacher information. The dashboard serves as the central command center during both emergencies and daily operations, with role-based views for administrators, IT staff, facilities managers, and teachers.
 
-URL: https://quicksecure.com/product/campus-monitoring
+URL: https://quicksecure.us/product/campus-monitoring
 
 ### RLS (Room Lockdown System)
 RLS is QuickSecure's physical hardware product — a room lockdown system that provides hardware-based emergency response capabilities for classrooms and campus buildings. RLS integrates with the QuickSecure software platform, enabling coordinated lockdown procedures that combine physical security with digital alerting and monitoring.
@@ -26,7 +26,7 @@ RLS is QuickSecure's physical hardware product — a room lockdown system that p
 ### Anonymous Tip Line
 AI-triaged reporting system with multilingual support and tiered escalation workflows. Students and community members can report safety concerns confidentially. Reports are automatically categorized by severity and routed to appropriate administrators. The tip line uses AI to assess urgency and ensure critical reports receive immediate attention.
 
-URL: https://quicksecure.com/product/tip-line
+URL: https://quicksecure.us/product/tip-line
 
 ### Mass Notifications
 Multi-channel alert system that sends notifications through push notifications, SMS, email, and in-app alerts simultaneously. Integrates directly with emergency response workflows so notifications trigger automatically during incidents. Also supports non-emergency communications like weather closures, schedule changes, and general announcements.
@@ -43,7 +43,7 @@ Facility and safety ticketing system for maintenance requests, incident reports,
 ### Drill Management
 Plan, execute, and document safety drills using the same workflows as real emergencies. Ensures staff are familiar with emergency procedures by practicing in the same system they'll use during actual events. Includes drill scheduling, participation tracking, and compliance reporting.
 
-URL: https://quicksecure.com/product/drill-management
+URL: https://quicksecure.us/product/drill-management
 
 ### Drill Compliance
 Tracks and reports on drill compliance requirements by state and district. Generates compliance documentation and alerts administrators when drills are due. Helps schools meet regulatory requirements for fire drills, lockdown drills, and other mandated safety exercises.
@@ -96,12 +96,12 @@ A school mass notification system sends urgent alerts to parents, staff, and sta
 
 ## Company Information
 
-- **Website**: https://quicksecure.com
-- **Request Demo**: https://quicksecure.com/contact
-- **Blog**: https://quicksecure.com/blog
-- **About**: https://quicksecure.com/our-story
-- **Careers**: https://quicksecure.com/careers
-- **Legal**: https://quicksecure.com/legal
+- **Website**: https://quicksecure.us
+- **Request Demo**: https://quicksecure.us/contact
+- **Blog**: https://quicksecure.us/blog
+- **About**: https://quicksecure.us/our-story
+- **Careers**: https://quicksecure.us/careers
+- **Legal**: https://quicksecure.us/legal
 - **LinkedIn**: https://www.linkedin.com/company/quicksecurellc
 
 ## Tagline

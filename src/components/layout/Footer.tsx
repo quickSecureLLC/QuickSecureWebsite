@@ -9,6 +9,14 @@ const columns = [
     ],
   },
   {
+    title: "Company",
+    links: [
+      { label: "Our Story", href: "/our-story" },
+      { label: "Careers", href: "/careers" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
+  {
     title: "Legal",
     links: [
       { label: "Terms of Service", href: "/legal#terms-of-service" },

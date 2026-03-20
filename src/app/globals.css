@@ -51,19 +51,10 @@
   }
 
   body {
-    --banner-h: 0px;
-    --top-offset: calc(60px + var(--banner-h));
+    --top-offset: 60px;
     background: var(--color-surface);
     color: var(--color-white);
     font-family: var(--font-primary);
-  }
-  body[data-banner="dismissed"] {
-    --banner-h: 0px;
-  }
-  body[data-banner="dismissed"] [data-announcement-banner] {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -78,4 +69,8 @@
   [data-marquee] {
     animation: marquee var(--marquee-duration, 45s) linear infinite;
     will-change: transform;
+  }
+
+  body:has(.hide-footer) > footer {
+    display: none;
   }}

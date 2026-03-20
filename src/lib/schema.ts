@@ -7,7 +7,7 @@ export function organizationSchema() {
     "@id": `${BASE_URL}/#organization`,
     name: "QuickSecure",
     url: BASE_URL,
-    logo: `${BASE_URL}/brand/Horizontal-quicksecure-logo.svg`,
+    logo: `${BASE_URL}/brand/horizontal-quicksecure-logo.svg`,
     description:
       "QuickSecure is a unified K-12 school safety platform combining emergency response, daily operations, hardware, and integrations into one system.",
     sameAs: ["https://www.linkedin.com/company/quicksecurellc"],
@@ -86,6 +86,48 @@ export function blogPostingSchema(opts: {
       url: BASE_URL,
     },
     publisher: { "@id": `${BASE_URL}/#organization` },
+  };
+}
+
+export function jobPostingSchema(opts: {
+  title: string;
+  description: string;
+  employmentType: string;
+  location: string;
+  datePosted: string;
+  identifier: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: opts.title,
+    description: opts.description,
+    datePosted: opts.datePosted,
+    employmentType: opts.employmentType,
+    identifier: {
+      "@type": "PropertyValue",
+      name: "QuickSecure",
+      value: opts.identifier,
+    },
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "QuickSecure",
+      sameAs: BASE_URL,
+      logo: `${BASE_URL}/brand/horizontal-quicksecure-logo.svg`,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: opts.location === "NYC" ? "New York" : opts.location,
+        addressRegion: "NY",
+        addressCountry: "US",
+      },
+    },
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name: "US",
+    },
   };
 }
 
